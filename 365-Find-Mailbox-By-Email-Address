@@ -1,0 +1,1 @@
+Get-EXOMailbox -Filter {EmailAddresses -like "email.address@domain.com"}
