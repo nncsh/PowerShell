@@ -1,0 +1,2 @@
+$s = Get-Process
+$i = 0; $s | ForEach {$_.ProcessName; $i++; Write-Progress -Activity $_.ProcessName -PercentComplete (($i/$s.count)*100)}
