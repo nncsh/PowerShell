@@ -1,0 +1,1 @@
+Add-MailboxFolderPermission -Identity "TargetUser Name:\Calendar" -User delegatesemail@address.com -AccessRights Editor -SharingPermissionFlags Delegate,CanViewPrivateItems
