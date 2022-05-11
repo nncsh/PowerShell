@@ -1,0 +1,1 @@
+Get-MsolGroupMember -GroupObjectID a1a1aaa1-1a11-1aa1-aa1a-1aa1aa1aa11 | Export-CSV O365GroupMembers.csv
