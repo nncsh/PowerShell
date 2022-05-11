@@ -1,0 +1,19 @@
+Connect-ExchangeOnline
+
+  1. Get the GUID of the deleted mailbox and in place archive if there is one:
+	Get-Mailbox -SoftDeletedMailbox Mail.Box | fl
+	Get-Mailbox -SoftDeletedMailbox -Archive Mail.Box | fl
+  
+	2. Create the new target mailbox and enable the archive if needed.
+	
+  3. Get the target GUIDs:
+	Get-Mailbox Mail.Box2 | fl
+	Get-Mailbox -Archive Mail.Box2 | fl
+	
+  4. Migrate the data:
+	New-MailboxRestoreRequest -SourceMailbox "OLDMAILBOXGUID" -TargetMailbox "NEWMAILBOXGUID" -AllowLegacyDNMismatch
+	New-MailboxRestoreRequest -SourceMailbox "OLDARCHIVEGUID" -TargetMailbox "NEWARCHIVEGUID" -AllowLegacyDNMismatch
+	
+  5. Monitor progress: Get-MailboxRestoreRequest
+	
+  6. Recreate SMTP aliases and delegate permissions, in this case remove the ‘2’ from the display name, etc.
