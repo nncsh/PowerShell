@@ -1,0 +1,2 @@
+$list1 = Import-CSV -Path mailboxlist.csv
+$i = 0; $list1 | ForEach {$i++; Write-Progress -Activity $_.UserPrincipalName -PercentComplete (($i/$list1.count)*100); Set-Mailbox -Identity $_.UserPrincipalName -EmailAddresses @{Remove=$_.unwantedalias}}
