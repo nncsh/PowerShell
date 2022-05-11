@@ -1,0 +1,10 @@
+Connect-MsolService
+$listofupns =  Import-CSV ".\upnsandobjectids.csv"
+$listofupns
+
+#Add
+$listofupns | foreach {Add-MsolGroupMember -GroupObjectId a112212-332a-40555f-h777654502 -GroupMemberType User -GroupMemberObjectId $_.MyObjectId}
+
+#Remove
+$listofupns | foreach {Remove-MsolGroupMember -GroupObjectId a112212-332a-40555f-h777654502 -GroupMemberType User -GroupMemberObjectId $_.MyObjectId}
+
