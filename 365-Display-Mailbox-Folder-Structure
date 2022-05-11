@@ -1,0 +1,5 @@
+#Mailbox
+Get-MailboxFolderStatistics email.address@domain.com | ft Identity, FolderSize
+
+#Archive Mailbox
+Get-MailboxFolderStatistics email.address@domain.com -Archive | ft Identity, FolderSize
