@@ -1,0 +1,1 @@
+$serverlist1 | ForEach {$serialnumber1={get-ciminstance -classname win32_bios -computername $_.servername1 | format-list serialnumber}; $servername1, $serialnumber1}
