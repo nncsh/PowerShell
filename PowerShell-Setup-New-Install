@@ -1,0 +1,7 @@
+Install-Module MSOnline
+Install-Module AzureAD
+Install-Module ExchangeOnlineManagement
+
+Connect-MsolService
+Connect-AzureAD
+Connect-ExchangeOnline
