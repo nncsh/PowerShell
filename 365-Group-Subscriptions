@@ -1,0 +1,5 @@
+#Display group members currently subscribed
+Get-UnifiedGroupLinks -ResultSize Unlimited -Identity "Group Display Name" -LinkType Subscribers
+
+#Subscribe a new user
+Add-UnifiedGroupLinks -Identity "Group Display Name" -LinkType Subscribers -Links email@address.com
