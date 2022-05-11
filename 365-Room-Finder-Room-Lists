@@ -1,0 +1,11 @@
+#Show existing Room Lists
+Get-DistributionGroup -RecipientTypeDetails RoomList
+
+#Create a new Room list
+New-DistributionGroup -Name "Meeting Rooms" -RoomList
+
+#Convert an existing Distribution List to a Room List
+Set-DistributionGroup "Distribution List" -RoomList
+
+#Add room resource object to a Room List
+Add-DistributionGroupMember –Identity "Meeting Rooms" -Member "Board room"
