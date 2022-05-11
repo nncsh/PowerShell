@@ -5,3 +5,5 @@ Install-Module ExchangeOnlineManagement
 Connect-MsolService
 Connect-AzureAD
 Connect-ExchangeOnline
+
+https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows
