@@ -1,0 +1,1 @@
+Set-CalendarProcessing -Identity "Room Name" -DeleteComments $False
