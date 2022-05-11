@@ -1,0 +1,1 @@
+Get-QuarantineMessage -Pagesize 1000 -RecipientAddress *@domain.com | Export-Csv -Path Quarantine.csv
