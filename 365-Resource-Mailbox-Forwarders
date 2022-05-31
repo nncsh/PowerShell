@@ -1,0 +1,5 @@
+# Enable Forwarding
+Set-Mailbox resource1@365.com -ForwardingAddress resource2@365.com -DeliverToMailboxAndForward $true
+
+# Disable Forwarding
+Set-Mailbox resource1@365.com -ForwardingAddress $null -DeliverToMailboxAndForward $false
