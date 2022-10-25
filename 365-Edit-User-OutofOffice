@@ -1,0 +1,3 @@
+Get-MailboxAutoReplyConfiguration -Identity some.user
+
+Set-MailboxAutoReplyConfiguration -Identity some.user -InternalMessage "Internal Message" -ExternalMessage "External Message"
