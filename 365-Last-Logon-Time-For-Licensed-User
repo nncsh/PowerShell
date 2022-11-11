@@ -1,5 +1,3 @@
-# Warning - This is a bit manual and janky.
-
 # Connect to MSOL and get the list of licensed users
 Connect-MsolService
 Get-MsolUser -all | where { $_.IsLicensed -eq $True } | Export-CSV -path licensedusers.csv
@@ -7,8 +5,7 @@ Get-MsolUser -all | where { $_.IsLicensed -eq $True } | Export-CSV -path license
 # Edit the CSV file - remove all columns except UserPrincipalName
 
 # Connect to Exchange Online and report last logon time for everyone in the CSV file
+# !!-- Ensure the output.csv file does not exist --!!
 Connect-ExchangeOnline
 $list1 = Import-CSV -Path licensedusers.csv
-$i = 0; $list1 | ForEach {$i++; Write-Progress -Activity $_.UserPrincipalName -PercentComplete (($i/$list1.count)*100); Get-MailboxStatistics -Identity $_.UserPrincipalName | Select DisplayName,LastLogonTime}
-
-# Now copy/paste the output logon times into a column in the csv file.
+$i = 0; $list1 | ForEach {$i++; Write-Progress -Activity $_.UserPrincipalName -PercentComplete (($i/$list1.count)*100); Get-MailboxStatistics -Identity $_.UserPrincipalName | Select DisplayName,LastLogonTime | Export-CSV output.csv -Append} 
