@@ -4,7 +4,7 @@
 Connect-MsolService
 Get-MsolUser -all | where { $_.IsLicensed -eq $True } | Export-CSV -path licensedusers.csv
 
-# Edit the CSV fie - remove all columns except UserPrincipalName
+# Edit the CSV file - remove all columns except UserPrincipalName
 
 # Connect to Exchange Online and report last logon time for everyone in the CSV file
 Connect-ExchangeOnline
