@@ -1,5 +1,7 @@
 # Approve WSUS updates for test groups script
 # This script should run on the second Thursday of each month via Task Scheduler
+# Remember to turn off all automatic approval in the GUI (but still keep a daily sync).
+# Group names need to be updated to match your environment.
 # Create a local admin user for the task on the WSUS server - it must be a member of 'WSUS Administrators' group
 # alongside 'Administrators'
 # Note that this is paired with the prod script which will pick up the same list of new updates due to the export file.
