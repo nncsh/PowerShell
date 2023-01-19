@@ -1,0 +1,40 @@
+# Approve WSUS updates for test groups script
+# This script should run on the second Thursday of each month via Task Scheduler
+# Create a local admin user for the task on the WSUS server - it must be a member of 'WSUS Administrators' group
+# alongside 'Administrators'
+# Note that this is paired with the prod script which will pick up the same list of new updates due to the export file.
+
+# Get new unapproved updates
+$corpupdatestoapprove = Get-WsusUpdate -Classification All -Approval Unapproved -Status Any
+
+# Output list to screen in case of manual run
+$corpupdatestoapprove
+
+# Save this list to a file so that the prod script can use it later
+$corpupdatestoapprove | Export-CliXml D:\Scripts\corpnewupdates.txt
+
+# Approve the new updates for the two test groups
+ForEach ($Update in $corpupdatestoapprove) {Get-WSUSUpdate -UpdateId $Update.UpdateID | Approve-WsusUpdate -Action Install -TargetGroupName "Endpoints - Test"}
+ForEach ($Update in $corpupdatestoapprove) {Get-WSUSUpdate -UpdateId $Update.UpdateID | Approve-WsusUpdate -Action Install -TargetGroupName "Servers - Test"}
+
+
+
+Note end of file!
+=================================================================================================================
+
+
+# Approve WSUS updates for prod groups script
+# This script should run on the third Thursday of each month via Task Scheduler
+# Create a local admin user for the task on the WSUS server - it must be a member of 'WSUS Administrators' group
+# alongside 'Administrators'
+# Note that this is paired with the test script and relies on the import file being previously created.
+
+# Load the list of new updates previously approved to the test groups
+$corpupdatestoapprove = Import-CliXml D:\Scripts\corpnewupdates.txt
+
+# Output list to screen in case of manual run
+$corpupdatestoapprove
+
+# Approve the new updates for the two production groups
+ForEach ($Update in $corpupdatestoapprove) {Get-WSUSUpdate -UpdateId $Update.UpdateID | Approve-WsusUpdate -Action Install -TargetGroupName "Endpoints - Prod"}
+ForEach ($Update in $corpupdatestoapprove) {Get-WSUSUpdate -UpdateId $Update.UpdateID | Approve-WsusUpdate -Action Install -TargetGroupName "Servers - Prod"}
