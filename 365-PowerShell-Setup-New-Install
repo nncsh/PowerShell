@@ -12,3 +12,6 @@ Connect-AzureAD
 Connect-ExchangeOnline
 
 https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows
+
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
