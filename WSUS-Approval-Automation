@@ -1,10 +1,13 @@
 # Approve WSUS updates for test groups script
-# This script should run on the second Thursday of each month via Task Scheduler
+# This script should run on the second Tuesday of each month at 3am via Task Scheduler
 # Remember to turn off all automatic approval in the GUI (but still keep a daily sync).
 # Group names need to be updated to match your environment.
 # Create a local admin user for the task on the WSUS server - it must be a member of 'WSUS Administrators' group
 # alongside 'Administrators'
 # Note that this is paired with the prod script which will pick up the same list of new updates due to the export file.
+
+# Wait 48 hours, to allow for any immediate pull of updates by Microsoft, and not be in the first 24 hours.
+Start-Sleep -Seconds 172800
 
 # Get new unapproved updates
 $corpupdatestoapprove = Get-WsusUpdate -Classification All -Approval Unapproved -Status Any
@@ -26,10 +29,13 @@ Note end of file!
 
 
 # Approve WSUS updates for prod groups script
-# This script should run on the third Thursday of each month via Task Scheduler
+# This script should run on the third Tuesday of each month at 3am via Task Scheduler
 # Create a local admin user for the task on the WSUS server - it must be a member of 'WSUS Administrators' group
 # alongside 'Administrators'
 # Note that this is paired with the test script and relies on the import file being previously created.
+
+# Wait 48 hours, to line up with the test script.
+Start-Sleep -Seconds 172800
 
 # Load the list of new updates previously approved to the test groups
 $corpupdatestoapprove = Import-CliXml D:\Scripts\corpnewupdates.txt
