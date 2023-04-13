@@ -52,6 +52,6 @@ ForEach ($Update in $corpupdatestoapprove) {Get-WSUSUpdate -UpdateId $Update.Upd
 ForEach ($Update in $corpupdatestoapprove) {Get-WSUSUpdate -UpdateId $Update.UpdateID | Approve-WsusUpdate -Action Install -TargetGroupName "Servers - Prod"}
 
 # Email confirmation
-$wsusemailsubject = (Get-Date -Format "MMMM") + " " + (Get-Date -Format "yyyy") + " WSUS updates have been approved for test devices"
+$wsusemailsubject = (Get-Date -Format "MMMM") + " " + (Get-Date -Format "yyyy") + " WSUS updates have been approved for production devices"
 $wsusemailbody = "Please see attached file for approved updates."
 Send-MailMessage -SmtpServer 'x.x.x.x' -From email@address.com -To email@address.com -Subject $wsusemailsubject -Body $wsusemailbody -Attachments 'D:\Scripts\corpnewupdates.txt'
