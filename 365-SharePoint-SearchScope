@@ -1,0 +1,14 @@
+Install-Module PnP.PowerShell
+Connect-PnPOnline -Url https:/tenant.sharepoint.com/sites/site -UseWebLogin
+Get-PnPSearchSettings
+Set-PnPSearchSettings -SearchScope 2
+Get-PnPSearchSettings
+
+
+
+
+
+0 = default, let SharePoint decide
+1 = All sites in the organization
+2 = All sites in this Hub
+3 = Just this site 
