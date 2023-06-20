@@ -1,0 +1,3 @@
+Get-MailboxFolderPermission -Identity "User1:\Calendar"
+Get-MailboxFolderPermission -Identity "User1:\Calendar" | where {$_.user.tostring() -like "User2*"}
+Get-MailboxFolderPermission -Identity "User1:\Calendar" | where {$_.user.tostring() -like "User2*"} | Remove-MailboxFolderPermission
