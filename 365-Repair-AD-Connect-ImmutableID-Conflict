@@ -1,0 +1,7 @@
+
+Get-AzureADUser -ObjectID "<incorrect user>" | select ImmutableID
+Set-AzureADuser -ObjectID "<incorrect user>" -ImmutableID "<change one letter>"
+
+You can delete <incorrect user> now if desired
+
+Set-AzureADuser -ObjectID "<correct user>" -ImmutableID "<correct immutableID>"
