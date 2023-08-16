@@ -1,3 +1,4 @@
+You can obtain the immutableID in question either from your on prem source AD user ms-consistency-guid or via the repair wizard in AD Connect/health.
 
 Get-AzureADUser -ObjectID "<incorrect user>" | select ImmutableID
 Set-AzureADuser -ObjectID "<incorrect user>" -ImmutableID "<change one letter>"
