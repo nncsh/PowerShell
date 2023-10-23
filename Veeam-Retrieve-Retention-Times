@@ -1,0 +1,7 @@
+# For Virtual machine jobs
+$listofvmjobs = Get-VBRJob
+$listofvmjobs | foreach {$vmjobname = $_.NameWithDescription; $vmretention = $_.BackupStorageOptions | Select RetainDaysToKeep; Write-Output "$vmjobname,$vmretention"}
+
+#For Physical computer jobs
+$listofcomputerjobs = Get-VBRComputerBackupJob
+$listofcomputerjobs | foreach {$computerjobname = $_.Name; $computerretention = $_.RetentionPolicy; Write-Output "$computerjobname,$computerretention"}
