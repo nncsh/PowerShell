@@ -1,0 +1,8 @@
+# Set retention limit to -7 days
+$limit = (Get-Date).AddDays(-7)
+
+# Set file path
+$path = "D:\path"
+
+# Get list of items in the file path, exclude folders, where the last write time is less than the retention limit, and delete them
+Get-ChildItem -Path $path -Recurse -Force | Where { (!$_.PSIsContainer) -and ($_.LastWriteTime -lt $limit) } | Remove-Item -Force
