@@ -1,0 +1,1 @@
+Get-ADUser -Filter * -Properties * -SearchBase "OU=Finance Users,OU=Accounts,DC=COMPANY,DC=CO,DC=UK" | Select DisplayName,samAccountName,EmailAddress | Export-CSV filename.csv
